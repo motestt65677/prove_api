@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Issue;
+use App\IssueSqlModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\IssueResource;
@@ -40,6 +41,11 @@ class IssueController extends Controller
     public function show($id)
     {
         //
+        $search["id"] = $id;
+        $model = new IssueSqlModel();
+        $data = $model->queryDataById($search);
+        $response["data"] = $data;
+        return $response;
     }
 
     /**

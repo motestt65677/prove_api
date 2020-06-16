@@ -16,7 +16,7 @@ class CreateIssuesTable extends Migration
         Schema::create('issues', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('bug_number_id');
-            // $table->string('title')->nullable();
+            $table->string('title');
             // $table->string('environment')->nullable();
             // $table->string('steps_to_reproduce')->nullable();
             // $table->string('expected_result')->nullable();
@@ -57,6 +57,15 @@ class CreateIssuesTable extends Migration
             $table->bigIncrements('id');
             $table->string('creator_id');
             $table->string('name');
+            $table->string('note')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('project_logs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('project_id')->nullable();
+            $table->string('version');
+            $table->string('name');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }
